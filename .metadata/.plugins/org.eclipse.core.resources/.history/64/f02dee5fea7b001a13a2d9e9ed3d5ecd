@@ -1,0 +1,5 @@
+package br.bliblioteca.repositorios;
+
+public class AutorRepository {
+
+}

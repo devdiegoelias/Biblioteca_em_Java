@@ -1,0 +1,8 @@
+package br.bliblioteca.repository;
+
+import org.springframework.stereotype.Service;
+
+@Repository
+public interface LivroRepository extends JpaRepository <Livro, Long> { 
+	
+}

@@ -1,0 +1,5 @@
+package livros.repository;
+
+public interface LivroRepository {
+
+}

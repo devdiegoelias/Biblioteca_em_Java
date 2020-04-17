@@ -1,0 +1,9 @@
+package livros.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.bliblioteca.livros.model.Autor;
+
+public interface LivroRepository extends JpaRepository<Livro, Long> {
+
+}

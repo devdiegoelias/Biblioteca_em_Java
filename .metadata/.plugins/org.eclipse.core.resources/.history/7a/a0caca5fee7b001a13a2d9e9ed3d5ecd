@@ -1,0 +1,8 @@
+package br.bliblioteca.repository;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class AutorRepository {
+
+}

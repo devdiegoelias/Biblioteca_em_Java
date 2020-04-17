@@ -1,0 +1,18 @@
+package br.bliblioteca.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.bliblioteca.repository.LivroRepository;
+
+@Service
+public class LivroService {
+
+	@Autowired
+	LivroRepository livroRepository;
+
+	
+	/*List<Livro> listaTodosLivros() {
+		return livroRepository.findAll(); }*/
+	 
+}
