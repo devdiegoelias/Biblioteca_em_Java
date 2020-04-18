@@ -1,0 +1,66 @@
+package br.bliblioteca.livros.controladores;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.bliblioteca.livros.model.Autor;
+import br.bliblioteca.livros.model.Livro;
+import br.bliblioteca.livros.service.AutorService;
+import br.bliblioteca.livros.service.LivroService;
+
+@Controller
+@RequestMapping("/livros")
+public class LivroController {
+
+	@Autowired
+	LivroService livroService;
+
+	@Autowired
+	AutorService autorService;
+
+	@GetMapping("/list")
+	public ModelAndView livros() {
+		ModelAndView modelAndView = new ModelAndView("livros/list"); // carregando view, dentro da pasta template
+
+		List<Livro> listaLivros = livroService.listaTodosLivros();
+		modelAndView.addObject("livros", listaLivros);
+
+		return modelAndView;
+	}
+
+	@GetMapping("/novo")
+	public ModelAndView createForm(@ModelAttribute Livro livro) {
+		ModelAndView modelAndView = new ModelAndView("livros/form");
+		List<Autor> listaAutores = autorService.listaAutores();
+		modelAndView.addObject("listAutores", listaAutores);
+		return modelAndView;
+	}
+
+	@PostMapping(value = "/gravar")
+	public ModelAndView create(Livro livro) {
+		livroService.salvarLivro(livro);
+		return new ModelAndView("redirect:/livros/list");
+	}
+
+	// @PathVariable("id") recebe parametro id
+
+	@GetMapping("/alterar/{id}")
+	public ModelAndView alterar(@PathVariable("id") Long id) {
+		ModelAndView modelAndView = new ModelAndView("livros/form");
+		return modelAndView;
+	}
+
+	@GetMapping("/excluir/{id}")
+	public ModelAndView excluir(@PathVariable("id") Long id) {
+		return new ModelAndView("redirect:/livros/list");
+	}
+
+}
